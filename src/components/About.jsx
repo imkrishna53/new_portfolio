@@ -1,10 +1,50 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-
+import MobileMenuContext from '../context/MobileMenuContext';
+import removeMobileNav from './RemoveNav';
+const Waypoint = require('waypoints/lib/noframework.waypoints');
 export const About = () => {
     const location = useLocation();
+    const {toggleMenu, mobileMenuObj} = useContext(MobileMenuContext);
+    const select = (el, all = false) => {
+      el = el.trim()
+      console.log(el);
+      console.log(all);
+      if (all) {
+        return [...document.querySelectorAll(el)]
+      } else {
+        return document.querySelector(el)
+      }
+    }
+  
+    const on = (type, el, listener, all = false) => {
+      let selectEl = select(el, all)
+  
+      if (selectEl) {
+        if (all) {
+          selectEl.forEach(e => e.addEventListener(type, listener))
+        } else {
+          selectEl.addEventListener(type, listener)
+        }
+      }
+
+    }
+
+    useEffect(() => {
+        removeMobileNav();
+
+      let skilsContent = select('.skills-content');
+      if (skilsContent) {
+        Waypoint.element = skilsContent
+        Waypoint.offset = '80%'
+        let progress = select('.progress .progress-bar', true);
+        progress.forEach((el) => {
+          el.style.width = el.getAttribute('aria-valuenow') + '%'
+        });
+      }
+    })
   return (
-<section id="about" className={location.pathname == '/about' && 'about section-show'}>
+<section id="about" className={location.pathname === '/about' && 'about section-show'}>
   <div className="about-me container">
 
     <div className="section-title">
@@ -33,7 +73,7 @@ export const About = () => {
             <ul className="age">
               <li><i className="bi bi-chevron-right"></i> <strong>Age:</strong> <span id="age_current">31</span></li>
               <li><i className="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-              <li><i className="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>imkrishna53@gmail.com</span></li>
+              <li><i className="bi bi-chevron-right"></i> <strong>Email-Id:</strong> <span>imkrishna53@gmail.com</span></li>
             </ul>
           </div>
         </div>
@@ -46,7 +86,7 @@ export const About = () => {
   </div>
 
   
-  <div className="counts container">
+  {/* <div className="counts container">
 
     <div className="row">
 
@@ -77,14 +117,14 @@ export const About = () => {
       <div className="col-lg-3 col-md-6 mt-5 mt-lg-0">
         <div className="count-box">
           <i className="bi bi-award"></i>
-          <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1" className="purecounter">0</span>
+          <span data-purecounter-start="0" data-purecounter-end="1" data-purecounter-duration="1" className="purecounter">10</span>
           <p>Awards</p>
         </div>
       </div>
 
     </div>
 
-  </div>
+  </div> */}
 
   <div className="skills container">
 
@@ -154,7 +194,7 @@ export const About = () => {
     </div>
 
   </div>
-  <div className="interests container">
+  {/* <div className="interests container">
 
     <div className="section-title">
       <h2>Interests</h2>
@@ -187,7 +227,7 @@ export const About = () => {
       </div>
     </div>
 
-  </div>
+  </div> */}
 </section>
   );
 };

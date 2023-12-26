@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import removeMobileNav from './RemoveNav';
 
 export const Skills = () => {
    const location = useLocation();
+   useEffect(() => {
+    removeMobileNav();
+   })
   return (
-    <section id="services" className={location.pathname == '/skills' && 'services section-show'}>
+    <section id="services" className={location.pathname === '/skills' && 'services section-show'}>
     <div className="container">
 
       <div className="section-title">

@@ -1,34 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
+import removeMobileNav from './RemoveNav';
 
 export const Resume = () => {
-         // Creating a temporary URL for the Blob
-         const url = 'assets/resume/krishna-resume.pdf'
+    // Creating a temporary URL for the Blob
+    const url = 'assets/resume/krishna-resume.pdf'
 
-         // Creating an anchor element
-         const a = document.createElement('a');
- 
-         // Setting the download attribute with the desired file name
-         a.download = 'krishna-resume.pdf';
- 
-         // Setting the href attribute with the temporary URL
-         a.href = url;
- 
-         // Appending the anchor element to the document
-         document.body.appendChild(a);
+    // Creating an anchor element
+    const a = document.createElement('a');
+
+    // Setting the download attribute with the desired file name
+    a.download = 'krishna-resume.pdf';
+
+    // Setting the href attribute with the temporary URL
+    a.href = url;
+
+    // Appending the anchor element to the document
+    document.body.appendChild(a);
     const location = useLocation();
     const handleDownload = () => {
-        
-   
-
-        // Programmatically triggering a click on the anchor element
-        a.click();
-
-        // Removing the anchor element from the document
-        document.body.removeChild(a);
+      a.click();
+      // Removing the anchor element from the document
+      document.body.removeChild(a);
     }
+
+    useEffect(() => {
+      removeMobileNav()
+    })
   return (
-    <section id="resume" className={location.pathname == '/resume' && 'resume section-show'}>
+    <section id="resume" className={location.pathname === '/resume' && 'resume section-show'}>
     <div className="container">
 
       <div className="section-title">
