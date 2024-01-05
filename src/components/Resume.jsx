@@ -1,8 +1,13 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import removeMobileNav from './RemoveNav';
+import { seo } from '../helpers/seo';
 
 export const Resume = () => {
+    seo({
+      title: 'Krishna-Resume',
+      description: 'Krishna Resume'
+    })
     // Creating a temporary URL for the Blob
     const url = 'assets/resume/krishna-resume.pdf'
 

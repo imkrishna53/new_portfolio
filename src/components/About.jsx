@@ -2,10 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import MobileMenuContext from '../context/MobileMenuContext';
 import removeMobileNav from './RemoveNav';
+import { seo } from '../helpers/seo';
 const Waypoint = require('waypoints/lib/noframework.waypoints');
 export const About = () => {
     const location = useLocation();
     const {toggleMenu, mobileMenuObj} = useContext(MobileMenuContext);
+    seo({
+      title: 'Krishna-About',
+      description: 'Krishna About me'
+    })
     const select = (el, all = false) => {
       el = el.trim()
       console.log(el);

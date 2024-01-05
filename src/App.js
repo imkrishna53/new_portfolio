@@ -7,6 +7,7 @@ import { Resume } from './components/Resume';
 import { Skills } from './components/Skills';
 import { About } from './components/About';
 import { MobileMenuState } from './context/MobileMenuState';
+import { Home } from './components/Home';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <MobileMenuState>
     <Header />
     <Routes>
-    <Route path="/" element={<About />} />
+    <Route path="/" element={< Home/>} />
       <Route path="/about" element={<About />} />
       <Route path="/resume" element={<Resume />} />
       <Route path="/skills" element={<Skills />} />

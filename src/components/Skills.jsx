@@ -1,11 +1,16 @@
 import React, { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import removeMobileNav from './RemoveNav';
+import { seo } from '../helpers/seo';
 
 export const Skills = () => {
    const location = useLocation();
    useEffect(() => {
     removeMobileNav();
+   })
+   seo({
+    title: 'Krishna-Skills',
+    description: 'Krishna Skills'
    })
   return (
     <section id="services" className={location.pathname === '/skills' && 'services section-show'}>
